@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled-components-v3-to-v4 Adds styled function import if extend is present: Adds styled function import if extend is present 1`] = `
+"
+StyledComponent.extend\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent)\`\`;
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Adds styled function to existing styled-components import: Adds styled function to existing styled-components import 1`] = `
+"
+import { css } from 'styled-components'
+
+StyledComponent.extend\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled, { css } from 'styled-components';
+
+styled(StyledComponent)\`\`;
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 CallExpression case: CallExpression case 1`] = `
+"
+StyledComponent.extend({ color: \\"red\\" })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent)({ color: 'red' });
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Chaining cases regular: Chaining cases regular 1`] = `
+"
+styled.div\`\`.extend\`\`
+
+styled.div\`color: red;\`.extend\`color: blue;\`
+
+styled.div({ color: \\"red\\"}).extend({ color: \\"blue\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(styled.div\`\`)\`\`;
+
+styled(
+  styled.div\`
+    color: red;
+  \`
+)\`
+  color: blue;
+\`;
+
+styled(styled.div({ color: 'red' }))({ color: 'blue' });
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Chaining cases withComponent: Chaining cases withComponent 1`] = `
+"
+StyledComponent.withComponent('div').extend\`\`
+
+StyledComponent.withComponent('div').extend\`color: red;\`
+
+StyledComponent.withComponent('div').extend()
+
+StyledComponent.withComponent('div').extend({ color: red })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent.withComponent('div'))\`\`;
+
+styled(StyledComponent.withComponent('div'))\`
+  color: red;
+\`;
+
+styled(StyledComponent.withComponent('div'))();
+
+styled(StyledComponent.withComponent('div'))({ color: red });
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Crazy stupid chaining: Crazy stupid chaining 1`] = `
+"
+StyledComponent.extend().extend().extend().extend\`\`
+
+StyledComponent.extend\`\`.extend().extend\`\`.extend\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(styled(styled(styled(StyledComponent)())())())\`\`;
+
+styled(styled(styled(styled(StyledComponent)\`\`)())\`\`)\`\`;
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Ignores adding styled default import if extend function is not present but styled-component import is: Ignores adding styled default import if extend function is not present but styled-component import is 1`] = `
+"
+import { css } from 'styled-components'
+foo()
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'styled-components';
+foo();
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Ignores adding styled import if extend function is not present: Ignores adding styled import if extend function is not present 1`] = `
+"
+foo()
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+foo();
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 MemberExpression case: MemberExpression case 1`] = `
+"
+StyledComponent.extend
+
+StyledComponent.extend\`\`.extend
+
+StyledComponent.extend({ color: red }).extend
+
+StyledComponent.withComponent('div').extend
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent);
+
+styled(styled(StyledComponent)\`\`);
+
+styled(styled(StyledComponent)({ color: red }));
+
+styled(StyledComponent.withComponent('div'));
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 TaggedTemplateExpression case: TaggedTemplateExpression case 1`] = `
+"
+StyledComponent.extend\`\`
+
+StyledComponent.extend\`color: red;\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent)\`\`;
+
+styled(StyledComponent)\`
+  color: red;
+\`;
+
+"
+`;
