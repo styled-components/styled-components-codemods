@@ -130,7 +130,7 @@ npm i -g babel-core babel-codemod styled-components-v3-to-v4-codemod
 2.  Config:
 
 ```
-Name: h to JSX
+Name: SC v3 to v4
 Program: codemod
 Arguments: -p /usr/local/lib/node_modules/styled-components-v3-to-v4-codemod/src/index.js$FilePathRelativeToProjectRoot$
 Working directory: $ProjectFileDir$
@@ -140,7 +140,7 @@ Tick on: Sync file after execution
 ```
 
 3.  Open file you want to transform
-    `Right Click -> External Tools -> h to JSX -> Apply prettier/code formatting -> Enjoy`
+    `Right Click -> External Tools -> SC v3 to v4 -> Apply prettier/code formatting -> Enjoy`
 4.  For even better experience go to.
     `Preferences -> Keymap -> External Tools -> External Tools -> h to JSX -> Attach some key combination`
 
@@ -158,7 +158,7 @@ Tick on: Sync file after execution
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "SC v3 to V4",
+            "label": "SC v3 to v4",
             "type": "shell",
             "command": "codemod -p /usr/local/lib/node_modules/styled-components-v3-to-v4-codemod/src/index.js ${file}"
         }
@@ -173,7 +173,7 @@ Tick on: Sync file after execution
     {
         "key": "cmd+e",
         "command": "workbench.action.tasks.runTask",
-        "args": "H to JSX"
+        "args": "SC v3 to v4"
     }
 ```
 
