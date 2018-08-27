@@ -14,14 +14,12 @@ styled(StyledComponent)\`\`;
 
 exports[`styled-components-v3-to-v4 Adds styled function to existing styled-components import: Adds styled function to existing styled-components import 1`] = `
 "
-import { css } from 'styled-components'
-
+import { css } from 'styled-components'    
 StyledComponent.extend\`\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import styled, { css } from 'styled-components';
-
 styled(StyledComponent)\`\`;
 
 "
@@ -103,6 +101,19 @@ import styled from 'styled-components';
 styled(styled(styled(styled(StyledComponent)())())())\`\`;
 
 styled(styled(styled(styled(StyledComponent)\`\`)())\`\`)\`\`;
+
+"
+`;
+
+exports[`styled-components-v3-to-v4 Ignores adding another import if extend function is present and styled import is present: Ignores adding another import if extend function is present and styled import is present 1`] = `
+"
+import styled from 'styled-components'
+StyledComponent.extend\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from 'styled-components';
+styled(StyledComponent)\`\`;
 
 "
 `;

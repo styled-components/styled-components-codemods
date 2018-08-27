@@ -2,7 +2,7 @@ const babel = require("babel-core");
 const prettier = require("prettier");
 
 const result = babel.transform(`
-import { css } from 'styled-components'
+import styled from 'styled-components'
 
 StyledComponent.extend\`\`
 

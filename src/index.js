@@ -33,7 +33,7 @@ module.exports = function() {
         });
 
         if (!isExtendInScope) {
-          path.stop();
+          return;
         }
         let isStyledComponentsImportInScope = false;
         let isStyledComponentsDefaultImportInScope = false;
@@ -50,7 +50,7 @@ module.exports = function() {
             isStyledComponentsDefaultImportInScope = node.specifiers.some(
               it =>
                 t.isImportDefaultSpecifier(it) &&
-                it.local.name === "styled-components" &&
+                it.local.name === "styled" &&
                 isStyledComponentsImportInScope
             );
             return isStyledComponentsDefaultImportInScope;

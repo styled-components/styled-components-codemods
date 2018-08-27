@@ -70,8 +70,7 @@ const tests = [
   {
     title: 'Adds styled function to existing styled-components import',
     code: `
-    import { css } from 'styled-components'
-    
+    import { css } from 'styled-components'    
     StyledComponent.extend\`\`
     `
   },
@@ -79,6 +78,13 @@ const tests = [
     title: 'Ignores adding styled import if extend function is not present',
     code: `
     foo()
+    `
+  },
+  {
+    title: 'Ignores adding another import if extend function is present and styled import is present',
+    code: `
+    import styled from 'styled-components'
+    StyledComponent.extend\`\`
     `
   },
   {
