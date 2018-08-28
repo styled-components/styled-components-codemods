@@ -94,6 +94,13 @@ const tests = [
     foo()
     `
   },
+  {
+    title: 'Ignores adding styled function to existing styled-components import with styled default and { css } named import',
+    code: `
+    import styled, { css } from 'styled-components'    
+    StyledComponent.extend\`\`
+    `
+  },
 ];
 
 pluginTester({

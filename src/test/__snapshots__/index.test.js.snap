@@ -131,6 +131,19 @@ foo();
 "
 `;
 
+exports[`styled-components-v3-to-v4 Ignores adding styled function to existing styled-components import with styled default and { css } named import: Ignores adding styled function to existing styled-components import with styled default and { css } named import 1`] = `
+"
+import styled, { css } from 'styled-components'    
+StyledComponent.extend\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled, { css } from 'styled-components';
+styled(StyledComponent)\`\`;
+
+"
+`;
+
 exports[`styled-components-v3-to-v4 Ignores adding styled import if extend function is not present: Ignores adding styled import if extend function is not present 1`] = `
 "
 foo()
