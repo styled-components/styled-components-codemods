@@ -116,7 +116,7 @@ or any other library/prototype etc. So if you know that there is some
 `.extend` function in your project that is not related to `styled-components` be aware
 and revert such changes manually diffing your code afterwards.
 
-Also be aware that `.extend` in some rare cases are not equal `styled` and this codemod doesn't cover this case.
+Also be aware that `.extend` in some rare cases is not equal `styled` and this codemod doesn't cover this case.
 Refer to this [issue](https://github.com/styled-components/styled-components/issues/1956) to understand the difference.
 It's rare usage, so fix it manually. Shouldn't be a big deal.
 
