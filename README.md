@@ -1,15 +1,52 @@
-# styled-components-v3-to-v4-codemod
+# styled-components-codemods
 
-[![npm version](https://badge.fury.io/js/styled-components-v3-to-v4-codemod.svg)](https://badge.fury.io/js/styled-components-v3-to-v4-codemod)
+Automatic codemods to upgrade your styled-components code to newer versions.
 
-Codemod to for `styled-components` to migrate from `v3`to `v4`.
+## Installation
 
-In version 4 of `styled-components` the `.extends` API will be removed.
-This codemod helps replace all of `.extends` usages to equivalent
-with `styled()` call instead.
-Also imports will be added if `styled` import is not present.
+```sh
+npm install -g styled-components-codemods
+```
 
-Before:
+## Usage
+
+```sh 
+Usage: styled-components-codemods [options] [command]
+
+Options:
+
+  -V, --version  output the version number
+  -h, --help     output usage information
+
+Commands:
+
+  v4 [files...]  Upgrade your code to styled-components v4 (codemods .extend)
+
+Examples:
+  $ styled-components-codemods v4 src/components/Box.js src/components/Button.js
+  $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)
+```
+
+### Codemods
+
+
+#### v4
+
+In version 4 of `styled-components` the `Component.extends` API will be removed in favor of only using `styled(Component)`. This codemod replaces all `.extends` calls to equivalent `styled()` calls instead.
+
+##### Limitations
+
+There is no way to distinguish whether `.extend` identifier is related to `styled-components` or any other library/prototype etc. If you know that there is another `.extend` function in your project that is not related to `styled-components` be aware and revert these instances manually.
+
+> Be aware that `.extend` used in combination with `.withComponent` can give you a different result than `styled(WithComponentedComponent)`. Refer to this [issue](https://github.com/styled-components/styled-components/issues/1956) to understand the difference.
+
+##### Example
+
+<details>
+
+  <summary>Code Before</summary>
+
+
 ```javascript
 StyledComponent.extend``
 
@@ -42,8 +79,13 @@ StyledComponent.extend().extend().extend().extend``
 StyledComponent.extend``.extend().extend``.extend``
 ```
 
-After:
-```jsx harmony
+</details>
+
+<details>
+
+  <summary>Code after</summary>
+
+```javascript
 import styled, { css } from 'styled-components'
 
 styled(StyledComponent)``
@@ -87,101 +129,6 @@ styled(styled(styled(styled(StyledComponent)())())())``
 styled(styled(styled(styled(StyledComponent)``)())``)``
 ```
 
-## Usage
+</details>
 
-Install [babel-codemod](https://github.com/square/babel-codemod) `npm i -g babel-codemod`
 
-Then install in root of your project `npm install styled-components-v3-to-v4-codemod`
-
-Run it like that from `node_modules` hence:
-
-```
-codemod --plugin ./node_modules/styled-components-v3-to-v4-codemod/src/index.js ./src
-```
-
-Also you may like to pretty print it using `prettier` instead of `recast`
-
-```
-codemod --plugin ./node_modules/styled-components-v3-to-v4-codemod/src/index.js ./src --printer prettier
-```
-
-Remove `styled-components-v3-to-v4-codemod` from `package.json`
-
-If there is any issues, let me know in the issues tab here at GitHub.
-
-## Limitations
-
-There is no way to distinct from AST whether `.extend` identifier is related to `styled-components`
-or any other library/prototype etc. So if you know that there is some
-`.extend` function in your project that is not related to `styled-components` be aware
-and revert such changes manually diffing your code afterwards.
-
-Also be aware that `.extend` in some rare cases is not equal `styled` and this codemod doesn't cover this case.
-Refer to this [issue](https://github.com/styled-components/styled-components/issues/1956) to understand the difference.
-It's rare usage, so fix it manually. Shouldn't be a big deal.
-
-## Integration with WebStorm/VS Code to do migration file by file
-
-Preconditions:
-
-```
-npm i -g babel-core babel-codemod styled-components-v3-to-v4-codemod
-```
-
-### WebStorm:
-
-1.  Go to Preferences -> External Tools -> Click plus to add tool.
-2.  Config:
-
-```
-Name: SC v3 to v4
-Program: codemod
-Arguments: -p /usr/local/lib/node_modules/styled-components-v3-to-v4-codemod/src/index.js$FilePathRelativeToProjectRoot$
-Working directory: $ProjectFileDir$
-
-In advanced settings:
-Tick on: Sync file after execution
-```
-
-3.  Open file you want to transform
-    `Right Click -> External Tools -> SC v3 to v4 -> Apply prettier/code formatting -> Enjoy`
-4.  For even better experience go to.
-    `Preferences -> Keymap -> External Tools -> External Tools -> h to JSX -> Attach some key combination`
-
-### VS Code:
-
-1.  Open command pallete
-2.  `>Tasks: Configure Task`
-3.  Press Up -> Select: `Task from tasks.json template` (or something like that)
-4.  Copy and paste this:
-
-```
-{
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "SC v3 to v4",
-            "type": "shell",
-            "command": "codemod -p /usr/local/lib/node_modules/styled-components-v3-to-v4-codemod/src/index.js ${file}"
-        }
-    ]
-}
-```
-
-5.  Open command pallete and ask it to open `keybindings.json`
-6.  Add this:
-
-```
-    {
-        "key": "cmd+e",
-        "command": "workbench.action.tasks.runTask",
-        "args": "SC v3 to v4"
-    }
-```
-
-7.  Open any file and press cmd+e to apply codemod on file.
-8.  Or if you don't want to bloat your `keybindings.json` just open Command pallete and type.
-    `Run task -> Enter -> Find in the list "H to JSX" -> Enter` (Usually will be on top)
-9.  Apply formatting and enjoy
