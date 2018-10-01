@@ -15,13 +15,13 @@
     "babel-core": "^6.26.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
     "babel-plugin-tester": "^5.0.0",
     "jest": "^22.4.2",
     "prettier": "^1.14.2"
   },
   "dependencies": {
     "babel-codemod": "^2.0.6",
+    "babel-core": "^6.26.3",
     "commander": "^2.18.0",
     "lodash": "^4.17.10"
   },
