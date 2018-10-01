@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "babel-codemod": "^2.0.6",
+    "commander": "^2.18.0",
     "lodash": "^4.17.10"
   },
   "scripts": {
