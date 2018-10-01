@@ -1,6 +1,6 @@
 {
   "name": "styled-components-codemods",
-  "version": "0.0.1",
+  "version": "1.0.0-0",
   "description": "Automatic codemods to upgrade your styled-components code to newer versions.",
   "repository": "https://github.com/styled-components/styled-components-codemods",
   "license": "MIT",
