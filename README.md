@@ -23,6 +23,7 @@ Commands:
   v4 [files...]  Upgrade your code to styled-components v4 (codemods .extend)
 
 Examples:
+
   $ styled-components-codemods v4 src/components/Box.js src/components/Button.js
   $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)
 ```

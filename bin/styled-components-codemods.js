@@ -36,6 +36,7 @@ program
 program.on('--help', function(){
   console.log('')
   console.log('Examples:');
+  console.log('')
   console.log('  $ styled-components-codemods v4 src/components/Box.js src/components/Button.js');
   console.log('  $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)');
 });
