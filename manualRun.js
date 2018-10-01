@@ -34,7 +34,7 @@ StyledComponent.extend().extend().extend().extend\`\`
 
 StyledComponent.extend\`\`.extend().extend\`\`.extend\`\`
 `, {
-  plugins: [["./src/index.js"]]
+  plugins: [["./src/v4/index.js"]]
 }).code;
 
 console.log(

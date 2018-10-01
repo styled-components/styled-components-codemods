@@ -1,13 +1,14 @@
 {
-  "name": "styled-components-v3-to-v4-codemod",
-  "version": "0.0.1",
-  "description": "This codemod transforms .extend calls to styled",
-  "repository": "https://github.com/RIP21/styled-components-v3-to-v4-codemod",
+  "name": "styled-components-codemods",
+  "version": "1.0.0",
+  "description": "Automatic codemods to upgrade your styled-components code to newer versions.",
+  "repository": "https://github.com/styled-components/styled-components-codemods",
   "license": "MIT",
   "author": "https://github.com/RIP21/",
-  "main": "src/index.js",
+  "bin": "./bin/styled-components-codemods.js",
   "keywords": [
     "babel-plugin",
+    "styled-components",
     "codemod"
   ],
   "peerDependencies": {
@@ -20,6 +21,7 @@
     "prettier": "^1.14.2"
   },
   "dependencies": {
+    "babel-codemod": "^2.0.6",
     "lodash": "^4.17.10"
   },
   "scripts": {
