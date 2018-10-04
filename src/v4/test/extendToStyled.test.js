@@ -1,12 +1,12 @@
 "use strict";
 
 const pluginTester = require("babel-plugin-tester");
-const scV3ToV4 = require("../index.js");
+const { extendToStyled } = require("..");
 const prettier = require("prettier");
 
 const tests = [
   {
-    title: 'TaggedTemplateExpression case',
+    title: "TaggedTemplateExpression case",
     code: `
     StyledComponent.extend\`\`
     
@@ -14,13 +14,13 @@ const tests = [
     `
   },
   {
-    title: 'CallExpression case',
+    title: "CallExpression case",
     code: `
     StyledComponent.extend({ color: "red" })
     `
   },
   {
-    title: 'MemberExpression case',
+    title: "MemberExpression case",
     code: `
     StyledComponent.extend
     
@@ -32,7 +32,7 @@ const tests = [
     `
   },
   {
-    title: 'Chaining cases regular',
+    title: "Chaining cases regular",
     code: `
     styled.div\`\`.extend\`\`
     
@@ -42,7 +42,7 @@ const tests = [
     `
   },
   {
-    title: 'Chaining cases withComponent',
+    title: "Chaining cases withComponent",
     code: `
     StyledComponent.withComponent('div').extend\`\`
     
@@ -62,50 +62,53 @@ const tests = [
     `
   },
   {
-    title: 'Adds styled function import if extend is present',
+    title: "Adds styled function import if extend is present",
     code: `
     StyledComponent.extend\`\`
     `
   },
   {
-    title: 'Adds styled function to existing styled-components import',
+    title: "Adds styled function to existing styled-components import",
     code: `
     import { css } from 'styled-components'    
     StyledComponent.extend\`\`
     `
   },
   {
-    title: 'Ignores adding styled import if extend function is not present',
+    title: "Ignores adding styled import if extend function is not present",
     code: `
     foo()
     `
   },
   {
-    title: 'Ignores adding another import if extend function is present and styled import is present',
+    title:
+      "Ignores adding another import if extend function is present and styled import is present",
     code: `
     import styled from 'styled-components'
     StyledComponent.extend\`\`
     `
   },
   {
-    title: 'Ignores adding styled default import if extend function is not present but styled-component import is',
+    title:
+      "Ignores adding styled default import if extend function is not present but styled-component import is",
     code: `
     import { css } from 'styled-components'
     foo()
     `
   },
   {
-    title: 'Ignores adding styled function to existing styled-components import with styled default and { css } named import',
+    title:
+      "Ignores adding styled function to existing styled-components import with styled default and { css } named import",
     code: `
     import styled, { css } from 'styled-components'    
     StyledComponent.extend\`\`
     `
-  },
+  }
 ];
 
 pluginTester({
-  pluginName: "styled-components-v3-to-v4",
-  plugin: scV3ToV4,
+  pluginName: "styled-components-v3-to-v4-styled",
+  plugin: extendToStyled,
   snapshot: true,
   formatResult: output =>
     prettier.format(output, {

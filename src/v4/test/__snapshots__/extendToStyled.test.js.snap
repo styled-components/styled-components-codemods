@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`styled-components-v3-to-v4 Adds styled function import if extend is present: Adds styled function import if extend is present 1`] = `
+exports[`styled-components-v3-to-v4-styled Adds styled function import if extend is present: Adds styled function import if extend is present 1`] = `
 "
 StyledComponent.extend\`\`
 
@@ -12,7 +12,7 @@ styled(StyledComponent)\`\`;
 "
 `;
 
-exports[`styled-components-v3-to-v4 Adds styled function to existing styled-components import: Adds styled function to existing styled-components import 1`] = `
+exports[`styled-components-v3-to-v4-styled Adds styled function to existing styled-components import: Adds styled function to existing styled-components import 1`] = `
 "
 import { css } from 'styled-components'    
 StyledComponent.extend\`\`
@@ -25,7 +25,7 @@ styled(StyledComponent)\`\`;
 "
 `;
 
-exports[`styled-components-v3-to-v4 CallExpression case: CallExpression case 1`] = `
+exports[`styled-components-v3-to-v4-styled CallExpression case: CallExpression case 1`] = `
 "
 StyledComponent.extend({ color: \\"red\\" })
 
@@ -37,7 +37,7 @@ styled(StyledComponent)({ color: 'red' });
 "
 `;
 
-exports[`styled-components-v3-to-v4 Chaining cases regular: Chaining cases regular 1`] = `
+exports[`styled-components-v3-to-v4-styled Chaining cases regular: Chaining cases regular 1`] = `
 "
 styled.div\`\`.extend\`\`
 
@@ -63,7 +63,7 @@ styled(styled.div({ color: 'red' }))({ color: 'blue' });
 "
 `;
 
-exports[`styled-components-v3-to-v4 Chaining cases withComponent: Chaining cases withComponent 1`] = `
+exports[`styled-components-v3-to-v4-styled Chaining cases withComponent: Chaining cases withComponent 1`] = `
 "
 StyledComponent.withComponent('div').extend\`\`
 
@@ -89,7 +89,7 @@ styled(StyledComponent.withComponent('div'))({ color: red });
 "
 `;
 
-exports[`styled-components-v3-to-v4 Crazy stupid chaining: Crazy stupid chaining 1`] = `
+exports[`styled-components-v3-to-v4-styled Crazy stupid chaining: Crazy stupid chaining 1`] = `
 "
 StyledComponent.extend().extend().extend().extend\`\`
 
@@ -105,7 +105,7 @@ styled(styled(styled(styled(StyledComponent)\`\`)())\`\`)\`\`;
 "
 `;
 
-exports[`styled-components-v3-to-v4 Ignores adding another import if extend function is present and styled import is present: Ignores adding another import if extend function is present and styled import is present 1`] = `
+exports[`styled-components-v3-to-v4-styled Ignores adding another import if extend function is present and styled import is present: Ignores adding another import if extend function is present and styled import is present 1`] = `
 "
 import styled from 'styled-components'
 StyledComponent.extend\`\`
@@ -118,7 +118,7 @@ styled(StyledComponent)\`\`;
 "
 `;
 
-exports[`styled-components-v3-to-v4 Ignores adding styled default import if extend function is not present but styled-component import is: Ignores adding styled default import if extend function is not present but styled-component import is 1`] = `
+exports[`styled-components-v3-to-v4-styled Ignores adding styled default import if extend function is not present but styled-component import is: Ignores adding styled default import if extend function is not present but styled-component import is 1`] = `
 "
 import { css } from 'styled-components'
 foo()
@@ -131,7 +131,7 @@ foo();
 "
 `;
 
-exports[`styled-components-v3-to-v4 Ignores adding styled function to existing styled-components import with styled default and { css } named import: Ignores adding styled function to existing styled-components import with styled default and { css } named import 1`] = `
+exports[`styled-components-v3-to-v4-styled Ignores adding styled function to existing styled-components import with styled default and { css } named import: Ignores adding styled function to existing styled-components import with styled default and { css } named import 1`] = `
 "
 import styled, { css } from 'styled-components'    
 StyledComponent.extend\`\`
@@ -144,7 +144,7 @@ styled(StyledComponent)\`\`;
 "
 `;
 
-exports[`styled-components-v3-to-v4 Ignores adding styled import if extend function is not present: Ignores adding styled import if extend function is not present 1`] = `
+exports[`styled-components-v3-to-v4-styled Ignores adding styled import if extend function is not present: Ignores adding styled import if extend function is not present 1`] = `
 "
 foo()
 
@@ -155,7 +155,7 @@ foo();
 "
 `;
 
-exports[`styled-components-v3-to-v4 MemberExpression case: MemberExpression case 1`] = `
+exports[`styled-components-v3-to-v4-styled MemberExpression case: MemberExpression case 1`] = `
 "
 StyledComponent.extend
 
@@ -179,7 +179,7 @@ styled(StyledComponent.withComponent('div'));
 "
 `;
 
-exports[`styled-components-v3-to-v4 TaggedTemplateExpression case: TaggedTemplateExpression case 1`] = `
+exports[`styled-components-v3-to-v4-styled TaggedTemplateExpression case: TaggedTemplateExpression case 1`] = `
 "
 StyledComponent.extend\`\`
 

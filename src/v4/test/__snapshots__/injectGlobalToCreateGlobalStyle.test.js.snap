@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled-components-v3-to-v4-global-style TaggedTemplateExpression case: TaggedTemplateExpression case 1`] = `
+"
+injectGlobalStyle\`\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const GlobalStyle = createGlobalStyle\`\`;
+
+console.warn("An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.");
+
+"
+`;
