@@ -6,10 +6,31 @@ const prettier = require("prettier");
 
 const tests = [
   {
-    title: "TaggedTemplateExpression case",
+    title: "ES Import case",
     code: `
-    import { injectGlobalStyle } from 'styled-components';
-    injectGlobalStyle\`\`
+    import { injectGlobal } from 'styled-components';
+    injectGlobal\`
+      html { color: red; }
+    \`;
+    `
+  },
+  {
+    title: "CommonJS, Non-destructured",
+    code: `
+    const styled = require('styled-components');
+    styled.injectGlobal\`
+      html { color: red; }
+    \`;
+    `
+  },
+  {
+    title: "CommonJS, Destructured",
+    code: `
+    const { injectGlobal } = require('styled-components');
+
+    injectGlobal\`
+      html { color: red; }
+    \`;
     `
   }
 ];

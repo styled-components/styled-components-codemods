@@ -1,18 +1,26 @@
 "use strict";
 
 const t = require("babel-core").types;
-const { prop, set } = require("lodash/fp");
+const { prop, set, has, flow, findIndex } = require("lodash/fp");
 const { manipulateOptions } = require("./common");
 
 const WARNING =
   "An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.";
-const PREVIOUS = "injectGlobalStyle";
+const PREVIOUS = "injectGlobal";
 const NEXT = "createGlobalStyle";
 const COMPONENT_ID = t.identifier("GlobalStyle");
 const NEXT_ID = t.identifier(NEXT);
+const EXPRESSION = "node.expression";
+
+const paths = {
+  global: "node.expression.tag.name",
+  obj: "node.expression.tag.property.name"
+};
 
 const isInjectGlobalCall = path =>
-  prop("node.expression.tag.name")(path) === PREVIOUS;
+  prop(paths.global)(path) === PREVIOUS || prop(paths.obj)(path) === PREVIOUS;
+const isInjectGlobalProp = property =>
+  property.shorthand === true && property.key.name === "injectGlobal";
 
 let shouldAddWarning = false;
 
@@ -66,14 +74,51 @@ module.exports = () => ({
         return;
       }
 
-      const expression = prop("node.expression")(path);
+      const target = has(paths.obj)(path) ? paths.obj : paths.global;
+      const renamed = set(target.replace(`${EXPRESSION}.`, ""), NEXT)(
+        prop(EXPRESSION)(path)
+      );
 
       // Wrap existing TemplateExpression with a Variable Declaration, update its name.
       path.replaceWith(
         t.variableDeclaration("const", [
-          t.variableDeclarator(COMPONENT_ID, set("tag.name", NEXT)(expression))
+          t.variableDeclarator(COMPONENT_ID, renamed)
         ])
       );
+    },
+    // For rewriting destructured import.
+    VariableDeclarator(path) {
+      // We don't care about non-function calls
+      if (!t.isCallExpression(path.node.init)) {
+        return;
+      }
+      // Making kind of a leap here; if the first arg is styled-components, carry on.
+      const firstArg = prop("node.init.arguments[0]")(path);
+
+      if (firstArg.value !== "styled-components") {
+        return;
+      }
+
+      // Find index for later use (splicing, yuck).
+      const injectGlobalPropIndex = findIndex(isInjectGlobalProp)(
+        path.node.id.properties
+      );
+
+      if (injectGlobalPropIndex === -1) {
+        return;
+      }
+
+      const injectGlobalProp = path.node.id.properties[injectGlobalPropIndex];
+
+      // Update key & value. Because it's marked as shorthand it'll be joined correctly.
+      const createGlobalStyleProp = flow(
+        set("key.name", NEXT),
+        set("value.name", NEXT)
+      )(injectGlobalProp);
+
+      // Unsafe: mutates current scope.
+      path.node.id.properties.splice(injectGlobalPropIndex, 1);
+      path.node.id.properties.push(createGlobalStyleProp);
     }
   }
 });
