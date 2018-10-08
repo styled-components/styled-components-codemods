@@ -15,19 +15,19 @@ Usage: styled-components-codemods [options] [command]
 
 Options:
 
-  -V, --version                       output the version number
-  -h, --help                          output usage information
+  -V, --version                                  output the version number
+  -h, --help                                     output usage information
 
 Commands:
 
-  v4                                  Run version v4 codemods
-  v4-extendToStyled                   Run just the extendToStyled command
-  v4-injectGlobalToCreateGlobalStyle  Run just the injectGlobalToCreateGlobalStyle command
+  v4 [...files]                                  Run all v4 codemods
+  v4-extendToStyled [...files]                   Run just the extendToStyled command
+  v4-injectGlobalToCreateGlobalStyle [...files]  Run just the injectGlobalToCreateGlobalStyle command
 
 Examples:
 
-  $ styled-components-codemods v4 src/components/Box.js src/components/Button.js
-  $ styled-components-codemods v4-extendToStyled src/**/*.js (this will only work if your terminal expands globs)
+  $ styled-components-codemods v4-extendToStyled src/components/Box.js src/components/Button.js
+  $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)
 ```
 
 ### Codemods

@@ -44,13 +44,13 @@ const runCodemods = curry((version, mods, files) => {
 const registerCodemods = curry((mods, program) => {
   Object.keys(mods).forEach(version => {
     program
-      .command(version)
+      .command(`${version} [...files]`)
       .description(`Run all ${version} codemods`)
       .action(runCodemods(version, mods[version]));
 
     mods[version].forEach(mod => {
       program
-        .command(`${version}-${mod}`)
+        .command(`${version}-${mod} [...files]`)
         .description(`Run just the ${mod} command`)
         .action(files => runCodemod(version, files, mod));
     });
