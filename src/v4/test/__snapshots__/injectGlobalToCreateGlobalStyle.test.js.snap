@@ -2,13 +2,16 @@
 
 exports[`styled-components-v3-to-v4-global-style TaggedTemplateExpression case: TaggedTemplateExpression case 1`] = `
 "
+import { injectGlobalStyle } from 'styled-components';
 injectGlobalStyle\`\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle\`\`;
-
-console.warn("An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.");
+throw new Error(
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.'
+);
 
 "
 `;

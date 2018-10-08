@@ -8,6 +8,7 @@ const tests = [
   {
     title: "TaggedTemplateExpression case",
     code: `
+    import { injectGlobalStyle } from 'styled-components';
     injectGlobalStyle\`\`
     `
   }
