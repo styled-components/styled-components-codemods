@@ -21,8 +21,8 @@ Options:
 Commands:
 
   v4 [...files]                                  Run all v4 codemods
-  v4-extendToStyled [...files]                   Run just the extendToStyled command
-  v4-injectGlobalToCreateGlobalStyle [...files]  Run just the injectGlobalToCreateGlobalStyle command
+  v4-extendToStyled [...files]                   Run just the extendToStyled codemod
+  v4-injectGlobalToCreateGlobalStyle [...files]  Run just the injectGlobalToCreateGlobalStyle codemod
 
 Examples:
 

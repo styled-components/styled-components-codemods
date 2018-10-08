@@ -51,7 +51,7 @@ const registerCodemods = curry((mods, program) => {
     mods[version].forEach(mod => {
       program
         .command(`${version}-${mod} [...files]`)
-        .description(`Run just the ${mod} command`)
+        .description(`Run just the ${mod} codemod`)
         .action(files => runCodemod(version, files, mod));
     });
   });
