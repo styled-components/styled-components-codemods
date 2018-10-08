@@ -86,16 +86,17 @@ module.exports = () => ({
         ])
       );
     },
-    // For rewriting destructured import.
+    // For rewriting destructured require call.
     VariableDeclarator(path) {
       // We don't care about non-function calls
       if (!t.isCallExpression(path.node.init)) {
         return;
       }
-      // Making kind of a leap here; if the first arg is styled-components, carry on.
+      // If we're requiring styled-components, carry on.
       const firstArg = prop("node.init.arguments[0]")(path);
+      const isRequire = prop("node.init.callee.name")(path) === "require";
 
-      if (firstArg.value !== "styled-components") {
+      if (firstArg.value !== "styled-components" && isRequire) {
         return;
       }
 
