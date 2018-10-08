@@ -5,7 +5,7 @@ const { prop, set, has, flow, findIndex } = require("lodash/fp");
 const { manipulateOptions } = require("./common");
 
 const WARNING =
-  "An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.";
+  "An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.";
 const PREVIOUS = "injectGlobal";
 const NEXT = "createGlobalStyle";
 const COMPONENT_ID = t.identifier("GlobalStyle");
