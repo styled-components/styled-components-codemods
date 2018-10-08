@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle\`
   html { color: red; }
 \`;
 throw new Error(
-  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.'
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
 );
 
 "
@@ -38,7 +38,7 @@ const GlobalStyle = styled.createGlobalStyle\`
   }
 \`;
 throw new Error(
-  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.'
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
 );
 
 "
@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle\`
   html { color: red; }
 \`;
 throw new Error(
-  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See styled-components.com/docs/api#createglobalstyle for instructions.'
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
 );
 
 "

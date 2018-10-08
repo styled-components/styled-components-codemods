@@ -1,44 +1,75 @@
 #!/usr/bin/env node
-'use strict';
+"use strict";
 
-const path = require('path');
-const program = require('commander');
-const { spawn } = require('child_process');
-const pkg = require('../package.json');
+const path = require("path");
+const program = require("commander");
+const { spawnSync } = require("child_process");
+const { curry } = require("lodash");
+const pkg = require("../package.json");
 
-program
-  .version(pkg.version)
-  .command('v4 [files...]')
-  .action((files) => {
-    if (!Array.isArray(files) || files.length === 0) {
-      throw new Error('Please provide a list of files to run the codemod on.');
-    } 
+/**
+ * Add the version-specific codemods here.
+ */
+const codemods = {
+  v4: ["extendToStyled", "injectGlobalToCreateGlobalStyle"]
+};
 
-    console.log('Running v4 codemods...\n')
-    const child = spawn(path.resolve(path.join(__dirname, '../node_modules/.bin/codemod')), ['--plugin', path.resolve(path.join(__dirname, '../src/v4/index.js')), ...files])
+const runCodemod = curry((version, files, mod) => {
+  if (typeof files !== "string" && !Array.isArray(files)) {
+    throw new Error("doh!");
+  }
 
-    child.stdout.on('data', chunk => {
-      console.log(chunk.toString())
-    })
-    // since these are streams, you can pipe them elsewhere
-    child.stderr.on('data', chunk => {
-      console.error(chunk.toString());
-    });
+  if (!Array.isArray(files)) {
+    files = [files];
+  }
 
-    child.on('close', (code) => {
-      if (code === 0) {
-        console.log('Finished running codemods!')
-      }
+  console.log(`Running codemod ${version} ${mod}`);
+
+  spawnSync(
+    path.resolve(path.join(__dirname, "../node_modules/.bin/codemod")),
+    [
+      "--plugin",
+      path.resolve(path.join(__dirname, "..", "src", version, `${mod}.js`)),
+      ...files
+    ]
+  );
+});
+
+program.version(pkg.version);
+
+const runCodemods = curry((version, mods, files) => {
+  mods.forEach(runCodemod(version, files));
+});
+
+const registerCodemods = curry((mods, program) => {
+  Object.keys(mods).forEach(version => {
+    program
+      .command(version)
+      .description(`Run all ${version} codemods`)
+      .action(runCodemods(version, mods[version]));
+
+    mods[version].forEach(mod => {
+      program
+        .command(`${version}-${mod}`)
+        .description(`Run just the ${mod} command`)
+        .action(files => runCodemod(version, files, mod));
     });
   });
+});
+
+registerCodemods(codemods, program);
 
 // must be before .parse() since node's emit() is immediate
-program.on('--help', function(){
-  console.log('')
-  console.log('Examples:');
-  console.log('')
-  console.log('  $ styled-components-codemods v4 src/components/Box.js src/components/Button.js');
-  console.log('  $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)');
+program.on("--help", function() {
+  console.log("");
+  console.log("Examples:");
+  console.log("");
+  console.log(
+    "  $ styled-components-codemods v4-extendToStyled src/components/Box.js src/components/Button.js"
+  );
+  console.log(
+    "  $ styled-components-codemods v4 src/**/*.js (this will only work if your terminal expands globs)"
+  );
 });
 
 program.parse(process.argv);

@@ -1,7 +1,7 @@
 "use strict";
 
 const pluginTester = require("babel-plugin-tester");
-const { injectGlobalToCreateGlobalStyle } = require("..");
+const injectGlobalToCreateGlobalStyle = require("../injectGlobalToCreateGlobalStyle");
 const prettier = require("prettier");
 
 const tests = [

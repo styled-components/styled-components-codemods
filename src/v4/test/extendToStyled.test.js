@@ -1,7 +1,7 @@
 "use strict";
 
 const pluginTester = require("babel-plugin-tester");
-const { extendToStyled } = require("..");
+const extendToStyled = require("../extendToStyled");
 const prettier = require("prettier");
 
 const tests = [
