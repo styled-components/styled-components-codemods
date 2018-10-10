@@ -4,14 +4,12 @@ Automatic codemods to upgrade your styled-components code to newer versions.
 
 ## Installation
 
-```sh
-npm install -g styled-components-codemods
-```
+Thanks to `npx` no installation is needed, just run the command below!
 
 ## Usage
 
 ```sh
-Usage: styled-components-codemods [options] [command]
+Usage: npx styled-components-codemods [options] [command]
 
 Options:
 
