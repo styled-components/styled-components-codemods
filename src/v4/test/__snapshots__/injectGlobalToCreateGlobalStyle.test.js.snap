@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled-components-v3-to-v4-global-style CommonJS, Destructured: CommonJS, Destructured 1`] = `
+"
+const { injectGlobal } = require('styled-components');
+
+injectGlobal\`
+  html { color: red; }
+\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const { createGlobalStyle } = require('styled-components');
+
+const GlobalStyle = createGlobalStyle\`
+  html { color: red; }
+\`;
+throw new Error(
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
+);
+
+"
+`;
+
+exports[`styled-components-v3-to-v4-global-style CommonJS, Non-destructured: CommonJS, Non-destructured 1`] = `
+"
+const styled = require('styled-components');
+styled.injectGlobal\`
+  html { color: red; }
+\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styled = require('styled-components');
+const GlobalStyle = styled.createGlobalStyle\`
+  html {
+    color: red;
+  }
+\`;
+throw new Error(
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
+);
+
+"
+`;
+
+exports[`styled-components-v3-to-v4-global-style ES Import case: ES Import case 1`] = `
+"
+import { injectGlobal } from 'styled-components';
+injectGlobal\`
+  html { color: red; }
+\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { createGlobalStyle } from 'styled-components';
+const GlobalStyle = createGlobalStyle\`
+  html { color: red; }
+\`;
+throw new Error(
+  'An injectGlobal usage was converted to createGlobalStyles via codemod but needs to be hooked up. See https://www.styled-components.com/docs/api#createglobalstyle for instructions.'
+);
+
+"
+`;
