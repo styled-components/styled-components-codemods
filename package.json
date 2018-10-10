@@ -23,6 +23,7 @@
     "babel-codemod": "^2.0.6",
     "babel-core": "^6.26.3",
     "commander": "^2.18.0",
+    "fast-glob": "^2.2.3",
     "lodash": "^4.17.10"
   },
   "scripts": {
