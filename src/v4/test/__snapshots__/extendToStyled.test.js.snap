@@ -14,7 +14,7 @@ styled(StyledComponent)\`\`;
 
 exports[`styled-components-v3-to-v4-styled Adds styled function to existing styled-components import: Adds styled function to existing styled-components import 1`] = `
 "
-import { css } from 'styled-components'    
+import { css } from 'styled-components'
 StyledComponent.extend\`\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -133,7 +133,7 @@ foo();
 
 exports[`styled-components-v3-to-v4-styled Ignores adding styled function to existing styled-components import with styled default and { css } named import: Ignores adding styled function to existing styled-components import with styled default and { css } named import 1`] = `
 "
-import styled, { css } from 'styled-components'    
+import styled, { css } from 'styled-components'
 StyledComponent.extend\`\`
 
       ↓ ↓ ↓ ↓ ↓ ↓

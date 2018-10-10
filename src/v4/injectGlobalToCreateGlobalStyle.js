@@ -40,6 +40,8 @@ module.exports = () => ({
         path.node.body.push(
           t.throwStatement(t.newExpression(t.identifier('Error'), [t.stringLiteral(WARNING)]))
         );
+
+        shouldAddWarning = false;
       }
     },
     ImportDeclaration(path) {
